@@ -6,6 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
+        'language'=>'pl',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'FIRMA SPEDYCYJNA - MODUŁ FINANSOWO-KSIĘGOWY',
 
@@ -55,7 +56,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=ksiegowosc',
+			'connectionString' => 'mysql:host=localhost;dbname=fk',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
