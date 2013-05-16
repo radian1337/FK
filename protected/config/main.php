@@ -8,7 +8,7 @@
 return array(
         'language'=>'pl',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'FIRMA SPEDYCYJNA - MODUŁ FINANSOWO-KSIĘGOWY',
+	'name'=>'MODUŁ FINANSOWO-KSIĘGOWY',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

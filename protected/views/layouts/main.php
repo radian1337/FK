@@ -23,13 +23,14 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+            <div id="logo"></div>
+            <div id="module_name"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
         <div id="mainmenu">
                 <?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Logowanie', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Wyloguj ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'LOGOWANIE', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'WYLOGUJ ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
                 <?php $this->widget('zii.widgets.CMenu',array(

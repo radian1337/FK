@@ -21,10 +21,13 @@ body
 
 #header
 {
-	margin: 0;
+	margin: 0 20px;
 	padding: 20px 0;
-	background: #567;
+	background: #fff;
+        border-bottom: 1px solid #C9E0ED;
 }
+
+
 
 #content
 {
@@ -47,13 +50,21 @@ body
 	border-top: 1px solid #C9E0ED;
 }
 
-#logo
+#module_name
 {
 	padding: 10px 20px;
 	font-size: 200%;
         font-weight: bold;
-        text-align: center;
-        color: #ffffff;
+        color: #323232;
+}
+
+#logo
+{
+        background: url(../images/Logo.png);
+        width: 200px;
+        height: 54px;
+        float: left;
+        margin: 0 25px 0 0;
 }
 
 #mainmenu
