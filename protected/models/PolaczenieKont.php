@@ -1,24 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "fk_kontrahenci".
+ * This is the model class for table "fk_polaczenie_kont".
  *
- * The followings are the available columns in table 'fk_kontrahenci':
- * @property string $symbol
- * @property string $nazwa
- * @property string $nip
- * @property string $adres
- * @property string $miejscowosc
- *
- * The followings are the available model relations:
- * @property ZakupSprzedaz[] $zakupSprzedazs
+ * The followings are the available columns in table 'fk_polaczenie_kont':
+ * @property string $fk_sprzedaz_dowod
+ * @property string $fk_plan_kont_numer
  */
-class Kontrahenci extends CActiveRecord
+class PolaczenieKont extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Kontrahenci the static model class
+	 * @return PolaczenieKont the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +24,7 @@ class Kontrahenci extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'fk_kontrahenci';
+		return 'fk_polaczenie_kont';
 	}
 
 	/**
@@ -41,14 +35,12 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('symbol, nazwa, nip, adres, miejscowosc', 'required'),
-			array('symbol', 'length', 'max'=>10),
-			array('nazwa', 'length', 'max'=>100),
-			array('nip', 'length', 'max'=>13),
-			array('adres, miejscowosc', 'length', 'max'=>50),
+			array('fk_sprzedaz_dowod, fk_plan_kont_numer', 'required'),
+			array('fk_sprzedaz_dowod', 'length', 'max'=>50),
+			array('fk_plan_kont_numer', 'length', 'max'=>24),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('symbol, nazwa, nip, adres, miejscowosc', 'safe', 'on'=>'search'),
+			array('fk_sprzedaz_dowod, fk_plan_kont_numer', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +52,6 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'zakupSprzedazs' => array(self::HAS_MANY, 'ZakupSprzedaz', 'fk_kontrahenci_symbol'),
 		);
 	}
 
@@ -70,11 +61,8 @@ class Kontrahenci extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'symbol' => 'Symbol',
-			'nazwa' => 'Nazwa',
-			'nip' => 'Nip',
-			'adres' => 'Adres',
-			'miejscowosc' => 'Miejscowosc',
+			'fk_sprzedaz_dowod' => 'Fk Sprzedaz Dowod',
+			'fk_plan_kont_numer' => 'Fk Plan Kont Numer',
 		);
 	}
 
@@ -89,11 +77,8 @@ class Kontrahenci extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('symbol',$this->symbol,true);
-		$criteria->compare('nazwa',$this->nazwa,true);
-		$criteria->compare('nip',$this->nip,true);
-		$criteria->compare('adres',$this->adres,true);
-		$criteria->compare('miejscowosc',$this->miejscowosc,true);
+		$criteria->compare('fk_sprzedaz_dowod',$this->fk_sprzedaz_dowod,true);
+		$criteria->compare('fk_plan_kont_numer',$this->fk_plan_kont_numer,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

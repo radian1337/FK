@@ -1,18 +1,18 @@
 <?php
-/* @var $this KontrahenciController */
+/* @var $this ZakupController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Kontrahencis',
+	'Zakup Sprzedazs',
 );
 
 $this->menu=array(
-	array('label'=>'Create Kontrahenci', 'url'=>array('create')),
-	array('label'=>'Manage Kontrahenci', 'url'=>array('admin')),
+	array('label'=>'Create ZakupSprzedaz', 'url'=>array('create')),
+	array('label'=>'Manage ZakupSprzedaz', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Kontrahencis</h1>
+<h1>Zakup Sprzedazs</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

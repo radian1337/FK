@@ -3,18 +3,17 @@
 /* @var $model Kontrahenci */
 
 $this->breadcrumbs=array(
-	'Kontrahenci'=>array('index'),
+	'Kontrahencis'=>array('index'),
 	$model->symbol=>array('view','id'=>$model->symbol),
-	'Edycja',
+	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'Lista kontrahentów', 'url'=>array('index')),
-	array('label'=>'Dodaj kontrahenta', 'url'=>array('create')),
-	array('label'=>'Edytuj kontrahenta', 'url'=>array('update', 'id'=>$model->symbol)),
-	array('label'=>'Zarządzaj kontrahentami', 'url'=>array('admin')),
+	array('label'=>'List Kontrahenci', 'url'=>array('index')),
+	array('label'=>'Create Kontrahenci', 'url'=>array('create')),
+	array('label'=>'View Kontrahenci', 'url'=>array('view', 'id'=>$model->symbol)),
+	array('label'=>'Manage Kontrahenci', 'url'=>array('admin')),
 );
-
 ?>
 
 <h1>Update Kontrahenci <?php echo $model->symbol; ?></h1>

@@ -1,15 +1,15 @@
 <?php
-/* @var $this KontrahenciController */
-/* @var $model Kontrahenci */
+/* @var $this DekretacjaKsiegowanieController */
+/* @var $model DekretacjaKsiegowanie */
 
 $this->breadcrumbs=array(
-	'Kontrahencis'=>array('index'),
+	'Dekretacja Ksiegowanies'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Kontrahenci', 'url'=>array('index')),
-	array('label'=>'Create Kontrahenci', 'url'=>array('create')),
+	array('label'=>'List DekretacjaKsiegowanie', 'url'=>array('index')),
+	array('label'=>'Create DekretacjaKsiegowanie', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#kontrahenci-grid').yiiGridView('update', {
+	$('#dekretacja-ksiegowanie-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Kontrahencis</h1>
+<h1>Dekretacja i księgowanie</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,15 +41,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'kontrahenci-grid',
+	'id'=>'dekretacja-ksiegowanie-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'symbol',
-		'nazwa',
-		'nip',
-		'adres',
-		'miejscowosc',
+		'numer_ksiegowy',
+		'zadekretowal',
+		'zaksiegowane',
+		'fk_zakup_sprzedaz_dowod',
 		array(
 			'class'=>'CButtonColumn',
 		),

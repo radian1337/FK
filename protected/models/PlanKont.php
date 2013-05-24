@@ -1,24 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "fk_kontrahenci".
+ * This is the model class for table "fk_plan_kont".
  *
- * The followings are the available columns in table 'fk_kontrahenci':
- * @property string $symbol
+ * The followings are the available columns in table 'fk_plan_kont':
+ * @property string $numer
  * @property string $nazwa
- * @property string $nip
- * @property string $adres
- * @property string $miejscowosc
+ * @property string $opis
  *
  * The followings are the available model relations:
- * @property ZakupSprzedaz[] $zakupSprzedazs
+ * @property ZakupSprzedaz[] $fkZakupSprzedazs
  */
-class Kontrahenci extends CActiveRecord
+class PlanKont extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Kontrahenci the static model class
+	 * @return PlanKont the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +28,7 @@ class Kontrahenci extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'fk_kontrahenci';
+		return 'fk_plan_kont';
 	}
 
 	/**
@@ -41,14 +39,12 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('symbol, nazwa, nip, adres, miejscowosc', 'required'),
-			array('symbol', 'length', 'max'=>10),
-			array('nazwa', 'length', 'max'=>100),
-			array('nip', 'length', 'max'=>13),
-			array('adres, miejscowosc', 'length', 'max'=>50),
+			array('numer, nazwa', 'required'),
+			array('numer', 'length', 'max'=>24),
+			array('nazwa, opis', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('symbol, nazwa, nip, adres, miejscowosc', 'safe', 'on'=>'search'),
+			array('numer, nazwa, opis', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +56,7 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'zakupSprzedazs' => array(self::HAS_MANY, 'ZakupSprzedaz', 'fk_kontrahenci_symbol'),
+			'fkZakupSprzedazs' => array(self::MANY_MANY, 'ZakupSprzedaz', 'fk_polaczenie_kont(fk_plan_kont_numer, fk_sprzedaz_dowod)'),
 		);
 	}
 
@@ -70,11 +66,9 @@ class Kontrahenci extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'symbol' => 'Symbol',
+			'numer' => 'Numer',
 			'nazwa' => 'Nazwa',
-			'nip' => 'Nip',
-			'adres' => 'Adres',
-			'miejscowosc' => 'Miejscowosc',
+			'opis' => 'Opis',
 		);
 	}
 
@@ -89,11 +83,9 @@ class Kontrahenci extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('symbol',$this->symbol,true);
+		$criteria->compare('numer',$this->numer,true);
 		$criteria->compare('nazwa',$this->nazwa,true);
-		$criteria->compare('nip',$this->nip,true);
-		$criteria->compare('adres',$this->adres,true);
-		$criteria->compare('miejscowosc',$this->miejscowosc,true);
+		$criteria->compare('opis',$this->opis,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

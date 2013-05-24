@@ -3,16 +3,14 @@
 /* @var $model Kontrahenci */
 
 $this->breadcrumbs=array(
-	'Kontrahenci'=>array('index'),
-	'Dodawanie',
+	'Kontrahencis'=>array('index'),
+	'Create',
 );
-
 
 $this->menu=array(
-	array('label'=>'Lista kontrahentów', 'url'=>array('index')),
-	array('label'=>'Zarządzaj kontrahentami', 'url'=>array('admin')),
+	array('label'=>'List Kontrahenci', 'url'=>array('index')),
+	array('label'=>'Manage Kontrahenci', 'url'=>array('admin')),
 );
-
 ?>
 
 <h1>Create Kontrahenci</h1>

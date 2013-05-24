@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "fk_kontrahenci".
+ * This is the model class for table "fk_dekretacja_ksiegowanie".
  *
- * The followings are the available columns in table 'fk_kontrahenci':
- * @property string $symbol
- * @property string $nazwa
- * @property string $nip
- * @property string $adres
- * @property string $miejscowosc
+ * The followings are the available columns in table 'fk_dekretacja_ksiegowanie':
+ * @property integer $numer_ksiegowy
+ * @property string $zadekretowal
+ * @property integer $zaksiegowane
+ * @property string $fk_zakup_sprzedaz_dowod
  *
  * The followings are the available model relations:
- * @property ZakupSprzedaz[] $zakupSprzedazs
+ * @property ZakupSprzedaz $fkZakupSprzedazDowod
  */
-class Kontrahenci extends CActiveRecord
+class DekretacjaKsiegowanie extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Kontrahenci the static model class
+	 * @return DekretacjaKsiegowanie the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +29,7 @@ class Kontrahenci extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'fk_kontrahenci';
+		return 'fk_dekretacja_ksiegowanie';
 	}
 
 	/**
@@ -41,14 +40,13 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('symbol, nazwa, nip, adres, miejscowosc', 'required'),
-			array('symbol', 'length', 'max'=>10),
-			array('nazwa', 'length', 'max'=>100),
-			array('nip', 'length', 'max'=>13),
-			array('adres, miejscowosc', 'length', 'max'=>50),
+			array('zadekretowal, fk_zakup_sprzedaz_dowod', 'required'),
+			array('zaksiegowane', 'numerical', 'integerOnly'=>true),
+			array('zadekretowal', 'length', 'max'=>30),
+			array('fk_zakup_sprzedaz_dowod', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('symbol, nazwa, nip, adres, miejscowosc', 'safe', 'on'=>'search'),
+			array('numer_ksiegowy, zadekretowal, zaksiegowane, fk_zakup_sprzedaz_dowod', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +58,7 @@ class Kontrahenci extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'zakupSprzedazs' => array(self::HAS_MANY, 'ZakupSprzedaz', 'fk_kontrahenci_symbol'),
+			'fkZakupSprzedazDowod' => array(self::BELONGS_TO, 'ZakupSprzedaz', 'fk_zakup_sprzedaz_dowod'),
 		);
 	}
 
@@ -70,11 +68,10 @@ class Kontrahenci extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'symbol' => 'Symbol',
-			'nazwa' => 'Nazwa',
-			'nip' => 'Nip',
-			'adres' => 'Adres',
-			'miejscowosc' => 'Miejscowosc',
+			'numer_ksiegowy' => 'Numer Ksiegowy',
+			'zadekretowal' => 'Zadekretowal',
+			'zaksiegowane' => 'Zaksiegowane',
+			'fk_zakup_sprzedaz_dowod' => 'Fk Zakup Sprzedaz Dowod',
 		);
 	}
 
@@ -89,11 +86,10 @@ class Kontrahenci extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('symbol',$this->symbol,true);
-		$criteria->compare('nazwa',$this->nazwa,true);
-		$criteria->compare('nip',$this->nip,true);
-		$criteria->compare('adres',$this->adres,true);
-		$criteria->compare('miejscowosc',$this->miejscowosc,true);
+		$criteria->compare('numer_ksiegowy',$this->numer_ksiegowy);
+		$criteria->compare('zadekretowal',$this->zadekretowal,true);
+		$criteria->compare('zaksiegowane',$this->zaksiegowane);
+		$criteria->compare('fk_zakup_sprzedaz_dowod',$this->fk_zakup_sprzedaz_dowod,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
