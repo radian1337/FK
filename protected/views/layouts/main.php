@@ -37,12 +37,10 @@
 			'items'=>array(
 				array('label'=>'Plan kont', 'url'=>array('/planKont')),
                                 array('label'=>'Dekretacja i księgowanie', 'url'=>array('/dekretacjaKsiegowanie')),
-                                array('label'=>'Ewidencja VAT sprzedaży', 'url'=>array('/sprzedaz')),
-                                array('label'=>'Ewidencja VAT zakupu', 'url'=>array('/zakup')),
-                                //array('label'=>'Rozrachunki wg dokumentów', 'url'=>array('/rozrachunkiWgDokumentow')),
+                                array('label'=>'Ewidencja VAT sprzedaży', 'url'=>array('/zakupSprzedaz')),
+                                array('label'=>'Ewidencja VAT zakupu', 'url'=>array('/zakupSprzedaz')),
                                 array('label'=>'Kontrahenci', 'url'=>array('/kontrahenci')),
-                                //array('label'=>'Sprawozdania', 'url'=>array('/sprawozdania')),
-                                //array('label'=>'Zestawienia', 'url'=>array('/zestawienia'))
+
 			),
 		)); ?>
 	</div><!-- mainmenu -->

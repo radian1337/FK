@@ -9,7 +9,7 @@
  * @property string $opis
  *
  * The followings are the available model relations:
- * @property ZakupSprzedaz[] $fkZakupSprzedazs
+ * @property ZakupSprzedaz[] $zakupSprzedazs
  */
 class PlanKont extends CActiveRecord
 {
@@ -56,7 +56,7 @@ class PlanKont extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'fkZakupSprzedazs' => array(self::MANY_MANY, 'ZakupSprzedaz', 'fk_polaczenie_kont(fk_plan_kont_numer, fk_sprzedaz_dowod)'),
+			'zakupSprzedazs' => array(self::HAS_MANY, 'ZakupSprzedaz', 'fk_plan_kont_numer'),
 		);
 	}
 

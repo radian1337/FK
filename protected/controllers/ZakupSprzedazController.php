@@ -1,6 +1,6 @@
 <?php
 
-class ZakupController extends Controller
+class ZakupSprzedazController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -63,12 +63,13 @@ class ZakupController extends Controller
 	public function actionCreate()
 	{
 		$model=new ZakupSprzedaz;
-
+                             
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['ZakupSprzedaz']))
 		{
+                        $_POST['ZakupSprzedaz']['brutto'] = $_POST['ZakupSprzedaz']['netto'] + $_POST['ZakupSprzedaz']['vat'];
 			$model->attributes=$_POST['ZakupSprzedaz'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->dowod));

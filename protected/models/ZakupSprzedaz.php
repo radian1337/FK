@@ -12,11 +12,12 @@
  * @property string $vat
  * @property string $brutto
  * @property string $fk_kontrahenci_symbol
+ * @property string $fk_plan_kont_numer
  *
  * The followings are the available model relations:
  * @property DekretacjaKsiegowanie[] $dekretacjaKsiegowanies
- * @property PlanKont[] $fkPlanKonts
  * @property Kontrahenci $fkKontrahenciSymbol
+ * @property PlanKont $fkPlanKontNumer
  */
 class ZakupSprzedaz extends CActiveRecord
 {
@@ -46,15 +47,17 @@ class ZakupSprzedaz extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('dowod, transakcjaVAT, data, nr_dokumentu, netto, vat, brutto, fk_kontrahenci_symbol', 'required'),
+			array('dowod, transakcjaVAT, nr_dokumentu, netto, vat, brutto, fk_kontrahenci_symbol, fk_plan_kont_numer', 'required'),
 			array('transakcjaVAT', 'numerical', 'integerOnly'=>true),
 			array('dowod', 'length', 'max'=>50),
 			array('nr_dokumentu', 'length', 'max'=>45),
 			array('netto, vat, brutto', 'length', 'max'=>20),
 			array('fk_kontrahenci_symbol', 'length', 'max'=>10),
+			array('fk_plan_kont_numer', 'length', 'max'=>24),
+			array('data', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('dowod, transakcjaVAT, data, nr_dokumentu, netto, vat, brutto, fk_kontrahenci_symbol', 'safe', 'on'=>'search'),
+			array('dowod, transakcjaVAT, data, nr_dokumentu, netto, vat, brutto, fk_kontrahenci_symbol, fk_plan_kont_numer', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,8 +70,8 @@ class ZakupSprzedaz extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'dekretacjaKsiegowanies' => array(self::HAS_MANY, 'DekretacjaKsiegowanie', 'fk_zakup_sprzedaz_dowod'),
-			'fkPlanKonts' => array(self::MANY_MANY, 'PlanKont', 'fk_polaczenie_kont(fk_sprzedaz_dowod, fk_plan_kont_numer)'),
 			'fkKontrahenciSymbol' => array(self::BELONGS_TO, 'Kontrahenci', 'fk_kontrahenci_symbol'),
+			'fkPlanKontNumer' => array(self::BELONGS_TO, 'PlanKont', 'fk_plan_kont_numer'),
 		);
 	}
 
@@ -86,6 +89,7 @@ class ZakupSprzedaz extends CActiveRecord
 			'vat' => 'Vat',
 			'brutto' => 'Brutto',
 			'fk_kontrahenci_symbol' => 'Fk Kontrahenci Symbol',
+			'fk_plan_kont_numer' => 'Fk Plan Kont Numer',
 		);
 	}
 
@@ -108,6 +112,7 @@ class ZakupSprzedaz extends CActiveRecord
 		$criteria->compare('vat',$this->vat,true);
 		$criteria->compare('brutto',$this->brutto,true);
 		$criteria->compare('fk_kontrahenci_symbol',$this->fk_kontrahenci_symbol,true);
+		$criteria->compare('fk_plan_kont_numer',$this->fk_plan_kont_numer,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

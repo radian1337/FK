@@ -60,6 +60,11 @@ div.form label
 	display: block;
 }
 
+span#ZakupSprzedaz_transakcjaVAT label{
+    display: inline-block;
+    font-weight: normal;
+}
+
 div.form .row
 {
 	margin: 5px 0;
